@@ -2,15 +2,34 @@
 <html lang="en">
 <head>
 <script>
-
-google_tag_manager['GTM-M5ZS3SD'].dataLayer.get('gtm.start');
-    
-function httpGet(theUrl)
+function httpGet()
 {
+    var key1;
+    var key2;
+    var theUrl = "http://httpbin.org/get";
+    
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('key1')){
+        key1 = params.get('key1');
+    }
+
+    if (params.has('key2')){
+        key2 = params.get('key2'); 
+    }
+    
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
+    if(typeof key1 !== "undefined"){
+        xmlHttp.open( "GET", theUrl+"?key1="+key1, false ); // false for synchronous request    
+        xmlHttp.send( null );
+        console.log(xmlHttp.responseText);
+    }
+    
+    if(typeof key2 !== "undefined"){
+        xmlHttp.open( "GET", theUrl+"?key2="+key2, false ); // false for synchronous request    
+        xmlHttp.send( null );
+        console.log(xmlHttp.responseText);
+    }
+    
 }
 </script>
 <!-- Google Tag Manager -->
@@ -44,6 +63,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <br>
 <a href="index.html?key2=mountains">I love the mountains!</a>
 <h1>API Request</h1>
-
+<button onclick="httpGet()">API Call</button>
 </body>
 </html>
