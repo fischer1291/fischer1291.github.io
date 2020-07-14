@@ -1,68 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<script>
-function httpGet()
-{
-    var key1;
-    var key2;
-    var theUrl = "http://httpbin.org/get";
-    
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('key1')){
-        key1 = params.get('key1');
-    }
 
-    if (params.has('key2')){
-        key2 = params.get('key2'); 
-    }
-    
-    var xmlHttp = new XMLHttpRequest();
-    if(typeof key1 !== "undefined"){
-        xmlHttp.open( "GET", theUrl+"?key1="+key1, false ); // false for synchronous request    
-        xmlHttp.send( null );
-        console.log(xmlHttp.responseText);
-    }
-    
-    if(typeof key2 !== "undefined"){
-        xmlHttp.open( "GET", theUrl+"?key2="+key2, false ); // false for synchronous request    
-        xmlHttp.send( null );
-        console.log(xmlHttp.responseText);
-    }
-    
-}
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M5ZS3SD');</script>
-<!-- End Google Tag Manager -->
-<title>Impact Tech Test</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-</style>
+<head>
+    <script>
+        function httpGet() {
+            var key1;
+            var key2;
+            var theUrl = "http://httpbin.org/get";
+
+            const params = new URLSearchParams(window.location.search);
+            if (params.has('key1')) {
+                key1 = params.get('key1');
+            }
+
+            if (params.has('key2')) {
+                key2 = params.get('key2');
+            }
+
+            var xmlHttp = new XMLHttpRequest();
+            if (typeof key1 !== "undefined") {
+                xmlHttp.open("GET", theUrl + "?key1=" + key1, false); // false for synchronous request    
+                xmlHttp.send(null);
+                console.log(xmlHttp.responseText);
+            }
+
+            if (typeof key2 !== "undefined") {
+                xmlHttp.open("GET", theUrl + "?key2=" + key2, false); // false for synchronous request    
+                xmlHttp.send(null);
+                console.log(xmlHttp.responseText);
+            }
+
+        }
+
+        function loadAd() {
+            var referrer = 'me';
+            var useragent = 'browser';
+            var company = 'company';
+
+
+            const loadScript = async (url) => {
+                const response = await fetch(url)
+                const script = await response.text()
+                Function(script)
+                console.log('Finished!');
+            }
+
+            const scriptUrl = 'http://c.fqtag.com/tag/implement-r.js?org=BB6DvPmytpFndg8atDcN&p=' +
+                referrer + '&a=' + useragent + '&cmp=' + company + '&fmt=banner&rt=display&sl=1&fq=1';
+            loadScript(scriptUrl)
+        }
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-M5ZS3SD');
+    </script>
+    <!-- End Google Tag Manager -->
+    <title>Impact Tech Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
 </head>
+
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5ZS3SD"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<h1>GTM</h1>
-<p>Query Strings into the Data Layer</p>
-<span>Choose your favorite place for vacations:</span>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5ZS3SD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <h1>GTM</h1>
+    <p>Query Strings into the Data Layer</p>
+    <span>Choose your favorite place for vacations:</span>
     <br>
     <br>
-<a href="index.html?key1=beach">I love the beach!</a>
+    <a href="index.html?key1=beach">I love the beach!</a>
     <br>
     <br>
-<a href="index.html?key2=mountains">I love the mountains!</a>
-<h1>API Request</h1>
-<button onclick="httpGet()">API Call</button>
-</body>
-</html>
+    <a href="index.html?key2=mountains">I love the mountains!</a>
+    <h1>API Request</h1>
+    <button onclick="httpGet()">API Call</button>
+    <h1>Ad iFrame</h1>
+    <iframe id=ad frameborder='0' scrolling='no' src="bonobos_image.jpg" width="300" height="250" onload="loadAd()">
+    </iframe>
+</body></html>
